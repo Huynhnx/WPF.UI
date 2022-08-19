@@ -1,0 +1,120 @@
+﻿<Window
+    x:Class="Dev.MainWindow"
+    Height="450"
+    Icon="{Binding Path=XamlImageKey, Converter={gui:XamlImageKeyToImageSourceConverter ForegroundResourceKey=WindowHeaderForeground, Height=16, Width=16}}"
+    Style="{DynamicResource MainWindowStyle}"
+    Title="MainWindow"
+    Width="800"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:gui="http://My.UI.com/2019/ui/wpf"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="{gui:ThemeResource ResourceKey=ContentBackground}">
+
+        <CheckBox
+            x:Name="EnabledInput"
+            Content="IsEnabled"
+            HorizontalAlignment="Left"
+            IsChecked="True"
+            Margin="8"
+            VerticalAlignment="Top" />
+        <Button
+            Click="OnClick"
+            Content="Switch theme"
+            HorizontalAlignment="Right"
+            IsDefault="True"
+            Margin="8"
+            Padding="8,0"
+            VerticalAlignment="Top" />
+        <GroupBox
+            Header="GroupBox"
+            HorizontalAlignment="Center"
+            IsEnabled="{Binding ElementName=EnabledInput, Path=IsChecked}"
+            VerticalAlignment="Center"
+            Width="250">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock
+                    FontSize="16"
+                    Foreground="{gui:ThemeResource ResourceKey=ContentForeground}"
+                    HorizontalAlignment="Center"
+                    Margin="0,8"
+                    Text="This is a test!"
+                    VerticalAlignment="Center" />
+                <Button
+                    Content="Button"
+                    Margin="0,8" />
+                <CheckBox
+                    Content="CheckBox"
+                    Margin="0,8" />
+                <ComboBox Margin="0,8">
+                    <ComboBoxItem
+                        Content="Item 1"
+                        IsSelected="True" />
+                    <ComboBoxItem
+                        Content="Item 2"
+                        IsSelected="True" />
+                    <ComboBoxItem
+                        Content="Item 3"
+                        IsSelected="True" />
+                </ComboBox>
+                <ComboBox
+                    IsEditable="True"
+                    Margin="0,8">
+                    <ComboBoxItem
+                        Content="Item 1"
+                        IsSelected="True" />
+                    <ComboBoxItem
+                        Content="Item 2"
+                        IsSelected="True" />
+                    <ComboBoxItem
+                        Content="Item 3"
+                        IsSelected="True" />
+                </ComboBox>
+                <TextBox
+                    Margin="0,8"
+                    Text="TextBox" />
+                <Expander Header="A" />
+                <WrapPanel
+                    Margin="0,8,0,0"
+                    Orientation="Horizontal">
+                    <WrapPanel.Resources>
+                        <Style TargetType="{x:Type gui:XamlImage}">
+                            <Setter Property="Width" Value="24" />
+                            <Setter Property="Height" Value="24" />
+                            <Setter Property="Foreground" Value="{gui:ThemeResource ResourceKey=GlyphForeground}" />
+                        </Style>
+                    </WrapPanel.Resources>
+                    <gui:XamlImage Template="{DynamicResource Icon_Add}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Close}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Delete}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Expand}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Logo}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Maximize}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Minimize}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Restore}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_TeRex}" />
+                    <gui:XamlImage Template="{DynamicResource Icon_Theme}" />
+                </WrapPanel>
+                <StackPanel
+                    Height="24"
+                    Margin="0,8,0,0"
+                    Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="ValueInput"
+                        Content="BoolToVisibilityFlexConverter"
+                        IsChecked="True"
+                        VerticalAlignment="Center" />
+                    <Border
+                        Background="Red"
+                        Height="24"
+                        Margin="16,0,0,0"
+                        Visibility="{Binding ElementName=ValueInput, Path=IsChecked, Converter={gui:BoolToVisibilityFlexConverter IsInverse=True}}"
+                        Width="24">
+                        <gui:XamlImage
+                            Foreground="{gui:ThemeResource ResourceKey=WindowHeaderForeground}"
+                            Template="{DynamicResource Icon_TeRex}" />
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
